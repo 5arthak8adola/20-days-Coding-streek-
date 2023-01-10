@@ -54,4 +54,21 @@ function trackAction({ actionId, userId, dailyGoal = 10 }) {
     actionUserTracker.streakCount = 0
   } else {
     if (actionUserTracker.lastDate < startOfDay) {
-      if (actionUserTracker.lastDate < startOfPreviousDay) }
+      if (actionUserTracker.lastDate < startOfPreviousDay) {
+        actionUserTracker.streakCount = 0
+      }
+
+      actionUserTracker.lastDate = new Date
+      actionUserTracker.actionCount = 1
+    } else {
+      
+      actionUserTracker.actionCount++
+
+      if (actionUserTracker.actionCount === dailyGoal) {
+        actionUserTracker.streakCount++
+      }
+    }
+  }
+
+  console.log(actionUserTracker)
+}
